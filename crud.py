@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session
+from sqlalchemy import text
 
 import models,schemas
 
@@ -13,4 +14,8 @@ def create_reporte(db: Session, reporte: schemas.ReporteCreate):
     return db_reporte
 
 def get_reportes(db: Session):
-    return db.query(models.Reporte).all()
+    reportes=models.Reporte
+    plataforma=models.Plataforma
+    id,videojuego,plataforma_id,name = reportes.id,reportes.videojuego,reportes.plataforma_id,plataforma.name
+    query = db.query(id,videojuego,plataforma_id,name).join(plataforma,reportes.plataforma_id == plataforma.id).all()
+    return query
