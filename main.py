@@ -33,7 +33,7 @@ def get_database_session():
 def read_plataformas(db: Session = Depends(get_database_session)):
     return crud.get_plataformas(db)
 
-@app.post("/reporte", response_model=schemas.Reporte)
+@app.post("/reporte", response_model=schemas.ReporteBase)
 def write_reporte(reporte: schemas.ReporteCreate, db: Session = Depends(get_database_session)):
     return crud.create_reporte(db, reporte)
 

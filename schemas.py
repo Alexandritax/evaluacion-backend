@@ -14,8 +14,14 @@ class ReporteCreate(BaseModel):
     plataforma_id: int
 
 
-class Reporte(ReporteCreate):
+class ReporteBase(ReporteCreate):
     id: int
+
+    class Config:
+        orm_mode = True
+
+
+class Reporte(ReporteBase):
     name: str
 
     class Config:
