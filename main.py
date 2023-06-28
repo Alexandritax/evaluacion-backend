@@ -15,14 +15,14 @@ def get_database_session():
     finally:
         db.close()
 
-@app.get("/plataforma/", response_model=list[schemas.Plataforma])
+@app.get("/plataforma", response_model=list[schemas.Plataforma])
 def read_plataformas(db: Session = Depends(get_database_session)):
     return crud.get_plataformas(db)
 
-@app.post("/reporte/", response_model=schemas.Reporte)
+@app.post("/reporte", response_model=schemas.Reporte)
 def write_reporte(reporte: schemas.ReporteCreate, db: Session = Depends(get_database_session)):
     return crud.create_reporte(db, reporte)
 
-@app.get("/reporte/", response_model=list[schemas.Reporte])
+@app.get("/reporte", response_model=list[schemas.Reporte])
 def read_reportes(db: Session = Depends(get_database_session)):
     return crud.get_reportes(db)
