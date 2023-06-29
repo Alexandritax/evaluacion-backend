@@ -6,7 +6,9 @@ import os
 load_dotenv()
 USER = os.getenv("USER")
 PASSWORD = os.getenv("PASSWORD")
-DATABASE_URL = "mysql+pymysql://"+USER+":"+PASSWORD+"@localhost:3306/evaluacion4"
+DBURL=os.getenv("DBURL")
+DBTABLE=os.getenv("DBTABLE")
+DATABASE_URL = "mysql+pymysql://"+USER+":"+PASSWORD+"@"+DBURL+"/"+DBTABLE
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
